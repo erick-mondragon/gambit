@@ -11,7 +11,7 @@ import (
 )
 
 func InsertProduct(p models.Product) (int64, error) {
-	fmt.Println("Comiezan registro de producto")
+	fmt.Println("Comienza registro de producto")
 
 	err := DbConnect()
 	if err != nil {
@@ -72,7 +72,7 @@ func InsertProduct(p models.Product) (int64, error) {
 }
 
 func UpdateProduct(p models.Product) error {
-	fmt.Println("Comiezan registro de producto")
+	fmt.Println("Comienza update de producto")
 
 	err := DbConnect()
 	if err != nil {
@@ -98,6 +98,28 @@ func UpdateProduct(p models.Product) error {
 	}
 
 	fmt.Println("Update product > Ejecución Exitosa")
+
+	return nil
+}
+
+func DeleteProduct(id int) error {
+	fmt.Println("Comienza delete de producto")
+
+	err := DbConnect()
+	if err != nil {
+		return err
+	}
+	defer Db.Close()
+
+	sentencia := "DELETE FROM products WHERE prod_Id = " + strconv.Itoa(id)
+
+	_, err = Db.Exec(sentencia)
+	if err != nil {
+		fmt.Println(err.Error())
+		return err
+	}
+
+	fmt.Println("Delete product > Ejecución Exitosa")
 
 	return nil
 }
