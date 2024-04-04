@@ -70,6 +70,13 @@ func procesoUsers(body string, path string, method string, user string, id strin
 		switch method {
 		case "PUT":
 			return routers.UpdateUser(body, user)
+		case "GET":
+			return routers.SelectUser(body, user)
+		}
+	}
+	if path == "users" {
+		if method == "GET" {
+			return routers.SelectUsers(body, user, request)
 		}
 	}
 
