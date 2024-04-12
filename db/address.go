@@ -41,7 +41,7 @@ func AddressExists(User string, id int) (error, bool) {
 	}
 	defer Db.Close()
 
-	sentencia := "SELECT 1 FROM adresses WHERE Add_Id = " + strconv.Itoa(id) + " AND Add_UserId = '" + User + "'"
+	sentencia := "SELECT 1 FROM addresses WHERE Add_Id = " + strconv.Itoa(id) + " AND Add_UserId = '" + User + "'"
 	fmt.Println(sentencia)
 
 	rows, err := Db.Query(sentencia)
