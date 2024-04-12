@@ -105,3 +105,24 @@ func UpdateAddress(addr models.Address) error {
 	fmt.Println("Update Address > Ejecución Exitosa")
 	return nil
 }
+
+func DeleteAddress(id int) error {
+	fmt.Println("Comienza DeleteAddress")
+
+	err := DbConnect()
+	if err != nil {
+		return err
+	}
+	defer Db.Close()
+
+	sentencia := "DELETE FROM addresses WHERE Add_Id = " + strconv.Itoa(id)
+
+	_, err = Db.Exec(sentencia)
+	if err != nil {
+		fmt.Println(err.Error())
+		return err
+	}
+
+	fmt.Println("Delete Address > Ejecución Exitosa")
+	return nil
+}
