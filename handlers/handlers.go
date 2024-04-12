@@ -119,6 +119,8 @@ func procesoAddress(body string, path string, method string, user string, id int
 	switch method {
 	case "POST":
 		return routers.InsertAddress(body, user)
+	case "PUT":
+		return routers.UpdateAddress(body, user, id)
 	}
 	return 400, "Method Invalid"
 }
